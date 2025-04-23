@@ -1,0 +1,42 @@
+.text-gradient {
+  background: linear-gradient(90deg, #007bff, #00c6ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.nav-link:hover {
+  color: #0d6efd !important;
+  transform: translateY(-2px);
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #007bff, #00c6ff);
+  border: none;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #0056b3, #0096c7);
+}
+
+
+
+
+/* Section for hero */
+
+.hero-section {
+  background: linear-gradient(to right, #f8f9fa, #e9ecef);
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, #007bff, #00c6ff);
+  border: none;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #0056b3, #0096c7);
+}
+
+.btn-outline-primary:hover {
+  background-color: #e3f2fd;
+}
