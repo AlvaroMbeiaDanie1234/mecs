@@ -1,5 +1,3 @@
-// src/pages/auth/login.tsx
-
 import { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -8,6 +6,81 @@ import loginImage from '../../assets/login.svg'; // Ilustração moderna
 export default function Login() {
   useEffect(() => {
     AOS.init({ duration: 1000 });
+
+    // Inicializar particles.js
+    if (window.Particles) {
+      const particlesOptions: any = {
+        selector: '.background',
+        particles: {
+          number: {
+            value: 100, // Número total de partículas
+            density: {
+              enable: true,
+              value_area: 800
+            }
+          },
+          color: {
+            value: "#ffffff"
+          },
+          shape: {
+            type: ["circle"], // Apenas círculos
+            stroke: {
+              width: 0,
+              color: "#000000"
+            }
+          },
+          opacity: {
+            value: 0.5,
+            random: true, // Opacidade aleatória
+          },
+          size: {
+            value: 5, // Tamanho das partículas
+            random: true,
+            anim: {
+              enable: true,
+              speed: 40,
+              opacity_min: 0.1,
+              sync: false
+            }
+          },
+          line_linked: {
+            enable: true,
+            distance: 150,
+            color: "#ffffff",
+            opacity: 0.4,
+            width: 1
+          },
+          move: {
+            enable: true,
+            speed: 6,
+            direction: "none",
+            random: false,
+            straight: false,
+            out_mode: "out",
+            bounce: false,
+          }
+        },
+        interactivity: {
+          detect_on: "canvas",
+          events: {
+            onhover: {
+              enable: true,
+              mode: "repulse"
+            },
+            onclick: {
+              enable: true,
+              mode: "push"
+            },
+            resize: true
+          }
+        },
+        retina_detect: true
+      };
+
+      window.Particles.init(particlesOptions);
+    } else {
+      console.error("Particles.js não está carregado.");
+    }
   }, []);
 
   return (
@@ -38,6 +111,8 @@ export default function Login() {
             maxWidth: '850px', // Ajuste da largura
             borderRadius: '10px',
             minHeight: 'auto',
+            position: 'relative',
+            zIndex: 1 // Para garantir que o card fique acima das partículas
           }}
         >
           <div className="text-center mb-4">
@@ -78,6 +153,19 @@ export default function Login() {
             </p>
           </form>
         </div>
+
+        {/* Canvas para as partículas */}
+        <canvas
+          className="background"
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            zIndex: 0,
+          }}
+        ></canvas>
       </div>
     </div>
   );
