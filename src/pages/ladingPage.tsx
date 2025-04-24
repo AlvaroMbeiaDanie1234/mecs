@@ -1,4 +1,5 @@
 import Contacte from "./contacte";
+import Empresas from "./empresas";
 import Hero from "./hero";
 import Footer from "./layout/footer";
 import Header from "./layout/header";
@@ -15,6 +16,12 @@ const LandingPage = () => {
 
       {/* Vantagens Section */}
       <Vantagens />
+
+      {/* Empresas */}
+
+      <Empresas />
+
+ 
 
       {/*Testemunhas*/}
       <Testemunhas/>

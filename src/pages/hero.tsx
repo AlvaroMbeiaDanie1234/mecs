@@ -1,18 +1,18 @@
 import AOS from "aos";
 import "aos/dist/aos.css";
-import heroImage from '../assets/hero.svg'; // Verifique se o caminho está correto
+import heroImage from '../assets/hero.svg';
 import backgroundImage from '../assets/background.jpg';
 import whatsappIcon from '../assets/whatsapp.png';
 import { Link } from 'react-router-dom';
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
-// O restante do seu código...
-// O restante do seu código...
-const phoneNumber = '244923456789'; // Coloque o número real aqui
+const phoneNumber = '244923456789';
 
 const Hero = () => {
     const [showChat, setShowChat] = useState(false);
     const [userMessage, setUserMessage] = useState('');
+    const vantaRef = useRef(null);
+    const vantaEffect = useRef<any>(null);
 
     useEffect(() => {
         AOS.init({ duration: 1000 });
@@ -27,28 +27,17 @@ const Hero = () => {
                 selector: '.background',
                 particles: {
                     number: {
-                        value: 100, // Número total de partículas
-                        density: {
-                            enable: true,
-                            value_area: 800
-                        }
+                        value: 100,
+                        density: { enable: true, value_area: 800 }
                     },
-                    color: {
-                        value: "#ffffff"
-                    },
+                    color: { value: "#ffffff" },
                     shape: {
-                        type: ["circle"], // Apenas círculos
-                        stroke: {
-                            width: 0,
-                            color: "#000000"
-                        }
+                        type: ["circle"],
+                        stroke: { width: 0, color: "#000000" }
                     },
-                    opacity: {
-                        value: 0.5,
-                        random: true, // Opacidade aleatória
-                    },
+                    opacity: { value: 0.5, random: true },
                     size: {
-                        value: 5, // Tamanho das partículas
+                        value: 5,
                         random: true,
                         anim: {
                             enable: true,
@@ -71,20 +60,14 @@ const Hero = () => {
                         random: false,
                         straight: false,
                         out_mode: "out",
-                        bounce: false,
+                        bounce: false
                     }
                 },
                 interactivity: {
                     detect_on: "canvas",
                     events: {
-                        onhover: {
-                            enable: true,
-                            mode: "repulse"
-                        },
-                        onclick: {
-                            enable: true,
-                            mode: "push"
-                        },
+                        onhover: { enable: true, mode: "repulse" },
+                        onclick: { enable: true, mode: "push" },
                         resize: true
                     }
                 },
@@ -97,6 +80,32 @@ const Hero = () => {
         }
     }, []);
 
+    // VANTA.WAVES effect
+    useEffect(() => {
+        const interval = setInterval(() => {
+            if ((window as any).VANTA && (window as any).THREE && !vantaEffect.current) {
+                vantaEffect.current = (window as any).VANTA.WAVES({
+                    el: vantaRef.current,
+                    THREE: (window as any).THREE,
+                    mouseControls: true,
+                    touchControls: true,
+                    gyroControls: false,
+                    minHeight: 200.00,
+                    minWidth: 200.00,
+                    scale: 1.0,
+                    scaleMobile: 1.0,
+                    color: 0x3f51b5,
+                });
+                clearInterval(interval);
+            }
+        }, 100);
+
+        return () => {
+            if (vantaEffect.current) vantaEffect.current.destroy();
+            clearInterval(interval);
+        };
+    }, []);
+
     const openWhatsAppWithMessage = () => {
         const encodedMessage = encodeURIComponent(userMessage || 'Olá, gostaria de mais informações!');
         window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
@@ -106,6 +115,7 @@ const Hero = () => {
 
     return (
         <section
+            ref={vantaRef}
             className="hero-section d-flex align-items-center min-vh-100 py-5"
             style={{
                 position: 'relative',
@@ -144,7 +154,7 @@ const Hero = () => {
                 <div className="row align-items-center flex-column-reverse flex-lg-row">
                     <div className="col-lg-6 text-center text-lg-start" data-aos="fade-right">
                         <h1 style={{ color: 'white' }} className="display-5 fw-bold mb-4">
-                            Conecte sua empresa ao <span className="text-primary">Futuro</span> da construção de Angola
+                            Conecte sua empresa ao <span className="text-primary">Futuro</span> das empresas do Mundo
                         </h1>
                         <p style={{ color: 'white' }} className="lead mb-4">
                             Descubra um novo jeito de crescer, inovar e construir juntos com tecnologia e colaboração.
@@ -169,23 +179,12 @@ const Hero = () => {
                 </div>
             </div>
 
-            {/* Chat WhatsApp flutuante */}
             <div className="position-fixed bottom-0 end-0 p-3" style={{ zIndex: 999 }}>
                 {showChat && (
                     <div className="bg-white p-3 rounded shadow" style={{ width: 300, marginBottom: 10 }}>
-                        {/* Mensagem automática */}
-                        <div
-                            className="bg-light p-2 mb-2 rounded"
-                            style={{
-                                fontSize: '0.9rem',
-                                color: '#333',
-                                borderLeft: '4px solid #25D366',
-                            }}
-                        >
+                        <div className="bg-light p-2 mb-2 rounded" style={{ fontSize: '0.9rem', color: '#333', borderLeft: '4px solid #25D366' }}>
                             👋 Olá! Como podemos ajudar?
                         </div>
-
-                        {/* Campo de mensagem */}
                         <textarea
                             className="form-control mb-2"
                             rows={3}
@@ -198,11 +197,7 @@ const Hero = () => {
                         </button>
                     </div>
                 )}
-
-                <button
-                    className="btn btn-outline-light rounded-circle"
-                    onClick={() => setShowChat(!showChat)}
-                >
+                <button className="btn btn-outline-light rounded-circle" onClick={() => setShowChat(!showChat)}>
                     <img src={whatsappIcon} alt="WhatsApp" style={{ width: '30px', height: '30px' }} />
                 </button>
             </div>
