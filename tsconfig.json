@@ -1,7 +1,16 @@
 {
-  "files": [],
-  "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
-  ]
+  "compilerOptions": {
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "module": "Node16", // <<< Aqui corrigido
+    "moduleResolution": "Node16",
+    "strict": true,
+    "allowImportingTsExtensions": true, // <<< Aqui mantido
+    "noEmit": true, // <<< Adicionado para não gerar JS na build do tsc
+    "jsx": "react-jsx",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["src"],
 }

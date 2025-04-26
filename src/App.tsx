@@ -1,10 +1,12 @@
 // src/App.tsx
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Login from './pages/auth/login';
-import Register from './pages/auth/register';
-import Dashboard from './pages/dashboard/components/dashboard';
-import LandingPage from './pages/ladingPage';
-import PrivateRoute from './pages/auth/authGuard';
+
+import './App';
+import LandingPage from './pages/ladingPage.js';
+import Login from './pages/auth/login.js';
+import Register from './pages/auth/register.js';
+import Dashboard from './pages/dashboard/components/dashboard.js';
+import PrivateRoute from './pages/auth/authGuard.js';
 
 function App() {
   return (

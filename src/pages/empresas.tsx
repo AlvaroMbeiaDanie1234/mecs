@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
-import { db } from '../../firebaseConfig';
+import { db } from '../../firebaseConfig.js';
 import Slider from 'react-slick';
 
 import "slick-carousel/slick/slick.css";

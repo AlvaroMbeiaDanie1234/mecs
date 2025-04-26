@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { auth, db } from '../../../firebaseConfig'; // Importa o db do Firestore
+import { auth, db } from '../../../firebaseConfig.js'; // Importa o db do Firestore
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import AOS from 'aos';

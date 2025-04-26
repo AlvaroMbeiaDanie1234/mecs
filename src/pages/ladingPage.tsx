@@ -1,10 +1,11 @@
-import Contacte from "./contacte";
-import Empresas from "./empresas";
-import Hero from "./hero";
-import Footer from "./layout/footer";
-import Header from "./layout/header";
-import Testemunhas from "./testemunhas";
-import Vantagens from "./vantagens";
+import Contacte from "./contacte.js";
+import Empresas from "./empresas.js";
+import Hero from "./hero.js";
+import Footer from "./layout/footer.js";
+import Header from "./layout/header.js";
+import Testemunhas from "./testemunhas.js";
+import Vantagens from "./vantagens.js";
+
 
 const LandingPage = () => {
   return (
@@ -12,7 +13,7 @@ const LandingPage = () => {
       <Header />
 
       {/* Hero Section */}
-      <Hero></Hero>
+      <Hero/>
 
       {/* Vantagens Section */}
       <Vantagens />
@@ -27,7 +28,7 @@ const LandingPage = () => {
       <Testemunhas/>
 
       {/* COntacto */}
-      <Contacte></Contacte>
+      <Contacte/>
 
       {/* Footer */}
       <Footer />

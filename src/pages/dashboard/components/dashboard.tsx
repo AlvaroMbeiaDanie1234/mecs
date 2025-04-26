@@ -1,35 +1,39 @@
-// src/pages/dashboard/components/dashboard.tsx
-import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+
+import './dashboard.css'
+import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import Header from './layout/header.tsx'
+import Sidebar from './layout/sidebar.tsx'
 
 const Dashboard = () => {
-  const [loading, setLoading] = useState(true);
-  const navigate = useNavigate();
+  const [loading, setLoading] = useState(true)
+  const navigate = useNavigate()
 
   useEffect(() => {
-    // Verifica se o token de autenticação existe no localStorage
-    const token = localStorage.getItem('authToken');
-
+    const token = localStorage.getItem('authToken')
     if (!token) {
-      // Se não houver token, redireciona para a página de login
-      navigate('/login');
+      navigate('/login')
     } else {
-      // Se o token existir, continua carregando o dashboard
-      setLoading(false);
+      setLoading(false)
     }
-  }, [navigate]);
+  }, [navigate])
 
   if (loading) {
-    return <div>Carregando...</div>;
+    return <div className="loading-screen">Carregando...</div>
   }
 
   return (
-    <div>
-      <h1>Dashboard</h1>
-      <p>Bem-vindo ao painel de controle!</p>
-      {/* Aqui você pode adicionar o conteúdo do seu dashboard */}
+    <div className="dashboard-container">
+      <Sidebar />
+      <div className="main-content">
+        <Header />
+        <div className="content-area">
+          <h1>Dashboard</h1>
+          <p>Bem-vindo ao painel de controle moderno!</p>
+        </div>
+      </div>
     </div>
-  );
-};
+  )
+}
 
-export default Dashboard;
+export default Dashboard
