@@ -1,18 +1,41 @@
-import { useNavigate } from 'react-router-dom'
+import { FaHome, FaUser, FaCog, FaBell, FaEnvelope } from 'react-icons/fa';
 
-const Sidebar = () => {
-  const navigate = useNavigate()
-
-  return (
-    <aside className="sidebar">
-      <div className="sidebar-logo">🚀</div>
-      <nav className="sidebar-nav">
-        <button onClick={() => navigate('/dashboard')}>🏠 Início</button>
-        <button onClick={() => navigate('/profile')}>👤 Perfil</button>
-        <button onClick={() => navigate('/settings')}>⚙️ Configurações</button>
-      </nav>
-    </aside>
-  )
+interface SidebarProps {
+  setCurrentPage: (page: string) => void;
 }
 
-export default Sidebar
+const Sidebar = ({ setCurrentPage }: SidebarProps) => {
+  return (
+    <nav className="sidebar d-none d-md-block col-md-3 p-3">
+      <ul className="nav flex-column">
+        <li className="nav-item">
+          <button className="nav-link" onClick={() => setCurrentPage('home')}>
+            <FaHome /> Início
+          </button>
+        </li>
+        <li className="nav-item">
+          <button className="nav-link" onClick={() => setCurrentPage('profile')}>
+            <FaUser /> Perfil
+          </button>
+        </li>
+        <li className="nav-item">
+          <button className="nav-link" onClick={() => setCurrentPage('notifications')}>
+            <FaBell /> Notificações
+          </button>
+        </li>
+        <li className="nav-item">
+          <button className="nav-link" onClick={() => setCurrentPage('messages')}>
+            <FaEnvelope /> Mensagens
+          </button>
+        </li>
+        <li className="nav-item">
+          <button className="nav-link" onClick={() => setCurrentPage('settings')}>
+            <FaCog /> Configurações
+          </button>
+        </li>
+      </ul>
+    </nav>
+  );
+};
+
+export default Sidebar;
